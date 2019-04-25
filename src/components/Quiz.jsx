@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 export default class Quiz extends Component {
     constructor() {
@@ -6,13 +12,15 @@ export default class Quiz extends Component {
         this.state = {
             quesResult: [],
             queCount: 0,
-            userAns: ''
+            userAns: '',
+            toggle2:0
 
 
         }
         this.nextQues = this.nextQues.bind(this)
         this.setResult = this.setResult.bind(this)
     }
+
 
     nextQues(event) {
         // console.log('nexxtQUES')
@@ -24,6 +32,8 @@ export default class Quiz extends Component {
             this.setState({queCount:this.state.queCount+1})
         }
         this.props.countINC()
+        this.setState({toggle:!true})
+        
     }
 
     setResult(e) {
@@ -51,6 +61,16 @@ export default class Quiz extends Component {
 
         this.props.showResult(this.state.queCount)
     }
+    static getDerivedStateFromProps(props,state){
+        console.log('toggle2',state.toggle2)
+    return {
+      toggle2:state.toggle2+1
+    }
+}
+componentDidUpdate(){
+    console.log('quiz comp update')
+    
+  }
 
     render() {
 
@@ -89,7 +109,6 @@ export default class Quiz extends Component {
 
                     })
                 } */}
-
 
 
 
